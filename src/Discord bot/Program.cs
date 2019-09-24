@@ -18,10 +18,11 @@ namespace Discord_bot
             _client = new DiscordSocketClient();
             
             _client.Log += Log;
+            
+            string token = System.IO.File.ReadAllText(@"../Token");
+            Console.WriteLine(token);
 
-            var token = "NjI0NTkxOTk5OTc0MjQ0MzUz.XYTPWw.j5jMDR5CN0Tn2quUkm5uR3vHGBM";
-
-            await _client.LoginAsync(TokenType.Bot, token);
+            await _client.LoginAsync(TokenType.Bot, token.Trim());
             await _client.StartAsync();
             
             CommandHandler c = new CommandHandler(_client ,new CommandService());
